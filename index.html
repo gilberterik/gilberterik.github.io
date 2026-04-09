@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Erik's Schedule</title>
+  <meta name="description" content="When Erik is in Texas vs Florida" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <h1 class="site-header__title">
+        Erik's Schedule <span>· Texas & Florida</span>
+      </h1>
+      <nav class="legend" aria-label="Legend">
+        <div class="legend__item">
+          <span class="legend__swatch legend__swatch--texas"></span>
+          Texas
+        </div>
+        <div class="legend__item">
+          <span class="legend__swatch legend__swatch--florida"></span>
+          Florida
+        </div>
+        <div class="legend__item">
+          <span class="legend__swatch legend__swatch--unknown"></span>
+          Unknown
+        </div>
+      </nav>
+      <button id="jump-today" aria-label="Scroll to today">Today</button>
+    </div>
+  </header>
+
+  <nav id="month-nav" class="month-nav-bar" aria-label="Jump to month"></nav>
+
+  <main id="calendar" aria-label="Texas and Florida schedule calendar"></main>
+
+  <footer class="site-footer">
+    <p>Last updated <span id="last-updated"></span></p>
+  </footer>
+
+  <script type="module">
+    import { PERIODS, OWNER_NAME, TEXAS_CITY } from './data.js';
+    import { renderCalendar } from './calendar.js';
+
+    renderCalendar({ periods: PERIODS, ownerName: OWNER_NAME, texasCity: TEXAS_CITY });
+
+    // Show last-modified date of data.js via document.lastModified as a fallback
+    const el = document.getElementById('last-updated');
+    if (el) {
+      el.textContent = new Date(document.lastModified).toLocaleDateString('en-US', {
+        month: 'long', day: 'numeric', year: 'numeric'
+      });
+    }
+
+    // Touch support: tap to show tooltip (toggle)
+    document.getElementById('calendar').addEventListener('click', e => {
+      const cell = e.target.closest('.day[tabindex="0"]');
+      if (!cell) return;
+      const already = cell.classList.contains('day--tooltip-visible');
+      document.querySelectorAll('.day--tooltip-visible')
+        .forEach(c => c.classList.remove('day--tooltip-visible'));
+      if (!already) cell.classList.add('day--tooltip-visible');
+    });
+  </script>
+</body>
+</html>
