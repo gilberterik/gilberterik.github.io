@@ -14,8 +14,8 @@
 //   - The calendar displays from the first period's month to the last.
 
 export const OWNER_NAME   = "Erik";
-export const TEXAS_CITY   = "Austin";
-export const FLORIDA_CITY = "Florida";
+export const TEXAS_CITY   = "Austin, TX";
+export const FLORIDA_CITY = "Wellington, FL";
 
 export const PERIODS = [
   // Apr 2: 5:15am departure AUS → counts as first Miami day (not a Austin workday)

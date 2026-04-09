@@ -46,7 +46,7 @@ function getDisplayRange(periods) {
   };
 }
 
-function renderMonth(year, month, dayMap, todayKey) {
+function renderMonth(year, month, dayMap, todayKey, labels) {
   const section = document.createElement("section");
   section.className = "month";
   section.id = `month-${year}-${String(month + 1).padStart(2, "0")}`;
@@ -126,7 +126,7 @@ function renderMonth(year, month, dayMap, todayKey) {
       const lines = [];
       if (key === todayKey) lines.push("Today");
       if (info) {
-        lines.push(info.status === "texas" ? "Texas" : "Florida");
+        lines.push(info.status === "texas" ? labels.texas : labels.florida);
         if (info.label) lines.push(info.label);
       }
       tip.textContent = lines.join(" · ");
@@ -142,7 +142,7 @@ function renderMonth(year, month, dayMap, todayKey) {
   return section;
 }
 
-export function renderCalendar({ periods, ownerName, texasCity }) {
+export function renderCalendar({ periods, ownerName, texasCity, floridaCity }) {
   const container = document.getElementById("calendar");
   if (!container) return;
   container.innerHTML = "";
@@ -155,8 +155,10 @@ export function renderCalendar({ periods, ownerName, texasCity }) {
   let cur = new Date(startMonth);
   let todaySection = null;
 
+  const labels = { texas: texasCity, florida: floridaCity };
+
   while (cur <= endMonth) {
-    const section = renderMonth(cur.getFullYear(), cur.getMonth(), dayMap, todayKey);
+    const section = renderMonth(cur.getFullYear(), cur.getMonth(), dayMap, todayKey, labels);
     container.appendChild(section);
 
     // Track the section containing today for scroll-to
