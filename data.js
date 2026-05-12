@@ -41,5 +41,14 @@ export const PERIODS = [
   { start: "2026-05-21", end: "2026-05-26", status: "florida" },
   // May 26: lands MIA→AUS at 11:59pm → May 27 is first full Austin workday
   { start: "2026-05-27", end: "2026-05-31", status: "texas" },
-  { start: "2026-06-01", end: "2026-06-30", status: "uncertain" },
+  // June: texas on Wed/Thu
+  { start: "2026-06-01", end: "2026-06-02", status: "uncertain" },
+  { start: "2026-06-03", end: "2026-06-04", status: "texas" },
+  { start: "2026-06-05", end: "2026-06-09", status: "uncertain" },
+  { start: "2026-06-10", end: "2026-06-11", status: "texas" },
+  { start: "2026-06-12", end: "2026-06-16", status: "uncertain" },
+  { start: "2026-06-17", end: "2026-06-18", status: "texas" },
+  { start: "2026-06-19", end: "2026-06-23", status: "uncertain" },
+  { start: "2026-06-24", end: "2026-06-25", status: "texas" },
+  { start: "2026-06-26", end: "2026-06-30", status: "uncertain" },
 ];
