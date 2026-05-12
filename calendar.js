@@ -115,7 +115,9 @@ function renderMonth(year, month, dayMap, todayKey, labels) {
       const icon = document.createElement("span");
       icon.className = "day__icon";
       icon.setAttribute("aria-hidden", "true");
-      icon.textContent = info.status === "texas" ? "🤠" : "🐊";
+      if (info.status === "texas") icon.textContent = "🤠";
+      else if (info.status === "florida") icon.textContent = "🐊";
+      else if (info.status === "uncertain") icon.textContent = "❓";
       cell.appendChild(icon);
     }
 

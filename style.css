@@ -4,6 +4,8 @@
   --color-texas-light:   #dce6f5;
   --color-florida:       #0ea5a0;
   --color-florida-light: #cff4f3;
+  --color-uncertain:     #8b5cf6;
+  --color-uncertain-light: #ede9fe;
   --color-unknown:      #e5e7eb;
   --color-unknown-text: #9ca3af;
   --color-today-ring:   #3b82f6;
@@ -92,9 +94,10 @@ body {
   border-radius: 3px;
   flex-shrink: 0;
 }
-.legend__swatch--texas   { background: var(--color-texas); }
-.legend__swatch--florida { background: var(--color-florida); }
-.legend__swatch--unknown { background: var(--color-unknown); }
+.legend__swatch--texas    { background: var(--color-texas); }
+.legend__swatch--florida  { background: var(--color-florida); }
+.legend__swatch--uncertain { background: var(--color-uncertain); }
+.legend__swatch--unknown  { background: var(--color-unknown); }
 
 /* ─── Jump to today button ──────────────────────────────────────────────── */
 #jump-today {
@@ -205,9 +208,10 @@ body {
 
 .day--empty   { background: transparent; }
 
-.day--texas   { background: var(--color-texas-light); }
-.day--florida { background: var(--color-florida-light); }
-.day--unknown { background: var(--color-unknown); }
+.day--texas      { background: var(--color-texas-light); }
+.day--florida    { background: var(--color-florida-light); }
+.day--uncertain  { background: var(--color-uncertain-light); }
+.day--unknown    { background: var(--color-unknown); }
 
 .day__num {
   font-size: 0.68rem;
@@ -232,9 +236,10 @@ body {
   z-index: 1;
 }
 
-.day--texas   .day__num { color: #1e3a6e; }
-.day--florida .day__num { color: #0c6b68; }
-.day--unknown .day__num { color: var(--color-unknown-text); }
+.day--texas     .day__num { color: #1e3a6e; }
+.day--florida    .day__num { color: #0c6b68; }
+.day--uncertain  .day__num { color: #5b21b6; }
+.day--unknown    .day__num { color: var(--color-unknown-text); }
 
 /* Past days: dimmed */
 .day--past { opacity: 0.45; }
