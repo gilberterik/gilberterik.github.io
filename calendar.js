@@ -128,7 +128,9 @@ function renderMonth(year, month, dayMap, todayKey, labels) {
       const lines = [];
       if (key === todayKey) lines.push("Today");
       if (info) {
-        lines.push(info.status === "texas" ? labels.texas : labels.florida);
+        if (info.status === "texas") lines.push(labels.texas);
+        else if (info.status === "florida") lines.push(labels.florida);
+        else if (info.status === "uncertain") lines.push("Uncertain");
         if (info.label) lines.push(info.label);
       }
       tip.textContent = lines.join(" · ");
