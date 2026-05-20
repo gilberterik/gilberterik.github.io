@@ -46,20 +46,15 @@ function getDisplayRange(periods) {
   };
 }
 
-function renderMonth(year, month, dayMap, todayKey, labels) {
-  const section = document.createElement("section");
-  section.className = "month";
-  section.id = `month-${year}-${String(month + 1).padStart(2, "0")}`;
+let isContinuousView = true;
 
-  // Month header
-  const header = document.createElement("h2");
-  header.className = "month__title";
-  header.textContent = `${MONTH_NAMES[month]} ${year}`;
-  section.appendChild(header);
+function renderUnifiedCalendar(startMonth, endMonth, dayMap, todayKey, labels) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "calendar-unified";
 
-  // Day-of-week header row
   const grid = document.createElement("div");
-  grid.className = "month__grid";
+  grid.className = "calendar-unified__grid";
+  wrapper.appendChild(grid);
 
   const isMobile = window.innerWidth < 420;
   for (let i = 0; i < 7; i++) {
@@ -70,118 +65,180 @@ function renderMonth(year, month, dayMap, todayKey, labels) {
     grid.appendChild(dh);
   }
 
-  // First day offset
-  const firstDay = new Date(year, month, 1);
-  const offset   = firstDay.getDay(); // 0=Sun
+  let curMonthStart = new Date(startMonth);
+  let curDow = curMonthStart.getDay();
 
-  // Empty cells before the 1st
-  for (let i = 0; i < offset; i++) {
+  // Initial padding
+  for (let i = 0; i < curDow; i++) {
     const empty = document.createElement("div");
     empty.className = "day day--empty";
     grid.appendChild(empty);
   }
 
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  let monthIndex = 0; // To alternate month shading
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  for (let d = 1; d <= daysInMonth; d++) {
-    const cellDate = new Date(year, month, d);
-    const key      = toDateKey(cellDate);
-    const info     = dayMap.get(key);
+  window.monthNavAnchors = {}; // Store scroll anchors
 
-    const cell = document.createElement("div");
-    cell.className = "day";
-    if (info) {
-      cell.classList.add(`day--${info.status}`);
-    } else {
-      cell.classList.add("day--unknown");
-    }
+  while (curMonthStart <= endMonth) {
+    const year = curMonthStart.getFullYear();
+    const month = curMonthStart.getMonth();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-    if (key === todayKey) {
-      cell.classList.add("day--today");
-    }
+    // Add anchor to first cell of the month
+    const firstDayCellId = `month-${year}-${String(month + 1).padStart(2, "0")}`;
 
-    if (cellDate < today) {
-      cell.classList.add("day--past");
-    }
+    for (let d = 1; d <= daysInMonth; d++) {
+      const cellDate = new Date(year, month, d);
+      const key      = toDateKey(cellDate);
+      const info     = dayMap.get(key);
 
-    const num = document.createElement("span");
-    num.className = "day__num";
-    num.textContent = d;
-    cell.appendChild(num);
+      const cell = document.createElement("div");
+      cell.className = "day";
 
-    if (info) {
-      const icon = document.createElement("span");
-      icon.className = "day__icon";
-      icon.setAttribute("aria-hidden", "true");
-      if (info.status === "texas") icon.textContent = "🤠";
-      else if (info.status === "florida") icon.textContent = "🐊";
-      else if (info.status === "uncertain") icon.textContent = "❓";
-      cell.appendChild(icon);
-    }
-
-    // Tooltip
-    if (info || key === todayKey) {
-      const tip = document.createElement("div");
-      tip.className = "day__tooltip";
-      const lines = [];
-      if (key === todayKey) lines.push("Today");
-      if (info) {
-        if (info.status === "texas") lines.push(labels.texas);
-        else if (info.status === "florida") lines.push(labels.florida);
-        else if (info.status === "uncertain") lines.push("Uncertain");
-        if (info.label) lines.push(info.label);
+      if (d === 1) {
+        cell.id = firstDayCellId;
+        window.monthNavAnchors[firstDayCellId] = cell;
       }
-      tip.textContent = lines.join(" · ");
-      cell.appendChild(tip);
-      cell.setAttribute("tabindex", "0");
-      cell.setAttribute("aria-label", lines.join(", "));
+
+      if (isContinuousView) {
+        if (monthIndex % 2 !== 0) cell.classList.add("day--alt-month");
+        if (d === 1 && curMonthStart > startMonth) {
+           cell.classList.add("day--month-start");
+           const monthLbl = document.createElement("span");
+           monthLbl.className = "day__month-label";
+           monthLbl.textContent = MONTH_NAMES[month].slice(0,3);
+           cell.appendChild(monthLbl);
+        }
+      }
+
+      if (info) {
+        cell.classList.add(`day--${info.status}`);
+      } else {
+        cell.classList.add("day--unknown");
+      }
+
+      if (key === todayKey) {
+        cell.classList.add("day--today");
+        window.todayAnchor = cell;
+      }
+
+      if (cellDate < today) {
+        cell.classList.add("day--past");
+      }
+
+      const num = document.createElement("span");
+      num.className = "day__num";
+      num.textContent = d;
+      cell.appendChild(num);
+
+      if (info) {
+        const icon = document.createElement("span");
+        icon.className = "day__icon";
+        icon.setAttribute("aria-hidden", "true");
+        if (info.status === "texas") icon.textContent = "🤠";
+        else if (info.status === "florida") icon.textContent = "🐊";
+        else if (info.status === "uncertain") icon.textContent = "❓";
+        cell.appendChild(icon);
+      }
+
+      // Tooltip
+      if (info || key === todayKey) {
+        const tip = document.createElement("div");
+        tip.className = "day__tooltip";
+        const lines = [];
+        if (key === todayKey) lines.push("Today");
+        if (info) {
+          if (info.status === "texas") lines.push(labels.texas);
+          else if (info.status === "florida") lines.push(labels.florida);
+          else if (info.status === "uncertain") lines.push("Uncertain");
+          if (info.label) lines.push(info.label);
+        }
+        tip.textContent = lines.join(" · ");
+        cell.appendChild(tip);
+        cell.setAttribute("tabindex", "0");
+        cell.setAttribute("aria-label", lines.join(", "));
+      }
+
+      grid.appendChild(cell);
+      curDow = (curDow + 1) % 7;
     }
 
-    grid.appendChild(cell);
+    curMonthStart = new Date(year, month + 1, 1);
+    monthIndex++;
+
+    if (!isContinuousView && curMonthStart <= endMonth) {
+      // Pad out the rest of the week
+      if (curDow !== 0) {
+        for (let i = curDow; i < 7; i++) {
+          const empty = document.createElement("div");
+          empty.className = "day day--empty";
+          grid.appendChild(empty);
+        }
+      }
+      // Insert divider
+      const divider = document.createElement("div");
+      divider.className = "month-divider";
+      divider.textContent = `${MONTH_NAMES[curMonthStart.getMonth()]} ${curMonthStart.getFullYear()}`;
+      grid.appendChild(divider);
+
+      // Update curDow for the next month
+      curDow = curMonthStart.getDay();
+
+      // Pad the start of the next month
+      for (let i = 0; i < curDow; i++) {
+        const empty = document.createElement("div");
+        empty.className = "day day--empty";
+        grid.appendChild(empty);
+      }
+    }
   }
 
-  section.appendChild(grid);
-  return section;
+  return wrapper;
 }
 
 export function renderCalendar({ periods, ownerName, texasCity, floridaCity }) {
   const container = document.getElementById("calendar");
   if (!container) return;
-  container.innerHTML = "";
 
   const sorted  = [...periods].sort((a, b) => a.start.localeCompare(b.start));
   const dayMap  = buildDayMap(sorted);
   const todayKey = toDateKey(new Date());
   const { startMonth, endMonth } = getDisplayRange(sorted);
-
-  let cur = new Date(startMonth);
-  let todaySection = null;
-
   const labels = { texas: texasCity, florida: floridaCity };
 
-  while (cur <= endMonth) {
-    const section = renderMonth(cur.getFullYear(), cur.getMonth(), dayMap, todayKey, labels);
-    container.appendChild(section);
+  // Store data globally for re-rendering
+  window.calendarData = { startMonth, endMonth, dayMap, todayKey, labels };
 
-    // Track the section containing today for scroll-to
-    const [ty, tm] = todayKey.split("-").map(Number);
-    if (cur.getFullYear() === ty && cur.getMonth() === tm - 1) {
-      todaySection = section;
-    }
-
-    cur = new Date(cur.getFullYear(), cur.getMonth() + 1, 1);
+  function doRender() {
+    container.innerHTML = "";
+    container.className = isContinuousView ? "continuous-view" : "break-view";
+    const unified = renderUnifiedCalendar(startMonth, endMonth, dayMap, todayKey, labels);
+    container.appendChild(unified);
   }
+
+  doRender();
 
   // Wire up the "Jump to today" button
   const jumpBtn = document.getElementById("jump-today");
-  if (jumpBtn) {
+  if (jumpBtn && !jumpBtn.hasAttribute("data-bound")) {
     jumpBtn.addEventListener("click", () => {
-      if (todaySection) {
-        todaySection.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (window.todayAnchor) {
+        window.todayAnchor.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     });
+    jumpBtn.setAttribute("data-bound", "true");
+  }
+
+  // Wire up toggle button
+  const toggleBtn = document.getElementById("toggle-view");
+  if (toggleBtn && !toggleBtn.hasAttribute("data-bound")) {
+    toggleBtn.addEventListener("click", () => {
+      isContinuousView = !isContinuousView;
+      doRender();
+    });
+    toggleBtn.setAttribute("data-bound", "true");
   }
 
   // Build the quick-nav month list
@@ -203,7 +260,10 @@ function buildMonthNav(periods) {
     btn.textContent = `${MONTH_NAMES[m].slice(0, 3)} ${y}`;
     btn.addEventListener("click", () => {
       const id = `month-${y}-${String(m + 1).padStart(2, "0")}`;
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
     });
     nav.appendChild(btn);
     cur = new Date(y, m + 1, 1);
