@@ -46,8 +46,6 @@ function getDisplayRange(periods) {
   };
 }
 
-let isContinuousView = true;
-
 function renderUnifiedCalendar(startMonth, endMonth, dayMap, todayKey, labels) {
   const wrapper = document.createElement("div");
   wrapper.className = "calendar-unified";
@@ -68,6 +66,12 @@ function renderUnifiedCalendar(startMonth, endMonth, dayMap, todayKey, labels) {
   let curMonthStart = new Date(startMonth);
   let curDow = curMonthStart.getDay();
 
+  // Divider for the very first month
+  const firstDivider = document.createElement("div");
+  firstDivider.className = "month-divider";
+  firstDivider.textContent = `${MONTH_NAMES[curMonthStart.getMonth()]} ${curMonthStart.getFullYear()}`;
+  grid.appendChild(firstDivider);
+
   // Initial padding
   for (let i = 0; i < curDow; i++) {
     const empty = document.createElement("div");
@@ -75,7 +79,6 @@ function renderUnifiedCalendar(startMonth, endMonth, dayMap, todayKey, labels) {
     grid.appendChild(empty);
   }
 
-  let monthIndex = 0; // To alternate month shading
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -100,17 +103,6 @@ function renderUnifiedCalendar(startMonth, endMonth, dayMap, todayKey, labels) {
       if (d === 1) {
         cell.id = firstDayCellId;
         window.monthNavAnchors[firstDayCellId] = cell;
-      }
-
-      if (isContinuousView) {
-        if (monthIndex % 2 !== 0) cell.classList.add("day--alt-month");
-        if (d === 1 && curMonthStart > startMonth) {
-           cell.classList.add("day--month-start");
-           const monthLbl = document.createElement("span");
-           monthLbl.className = "day__month-label";
-           monthLbl.textContent = MONTH_NAMES[month].slice(0,3);
-           cell.appendChild(monthLbl);
-        }
       }
 
       if (info) {
@@ -166,9 +158,8 @@ function renderUnifiedCalendar(startMonth, endMonth, dayMap, todayKey, labels) {
     }
 
     curMonthStart = new Date(year, month + 1, 1);
-    monthIndex++;
 
-    if (!isContinuousView && curMonthStart <= endMonth) {
+    if (curMonthStart <= endMonth) {
       // Pad out the rest of the week
       if (curDow !== 0) {
         for (let i = curDow; i < 7; i++) {
@@ -211,14 +202,10 @@ export function renderCalendar({ periods, ownerName, texasCity, floridaCity }) {
   // Store data globally for re-rendering
   window.calendarData = { startMonth, endMonth, dayMap, todayKey, labels };
 
-  function doRender() {
-    container.innerHTML = "";
-    container.className = isContinuousView ? "continuous-view" : "break-view";
-    const unified = renderUnifiedCalendar(startMonth, endMonth, dayMap, todayKey, labels);
-    container.appendChild(unified);
-  }
-
-  doRender();
+  container.innerHTML = "";
+  container.className = "break-view";
+  const unified = renderUnifiedCalendar(startMonth, endMonth, dayMap, todayKey, labels);
+  container.appendChild(unified);
 
   // Wire up the "Jump to today" button
   const jumpBtn = document.getElementById("jump-today");
@@ -229,16 +216,6 @@ export function renderCalendar({ periods, ownerName, texasCity, floridaCity }) {
       }
     });
     jumpBtn.setAttribute("data-bound", "true");
-  }
-
-  // Wire up toggle button
-  const toggleBtn = document.getElementById("toggle-view");
-  if (toggleBtn && !toggleBtn.hasAttribute("data-bound")) {
-    toggleBtn.addEventListener("click", () => {
-      isContinuousView = !isContinuousView;
-      doRender();
-    });
-    toggleBtn.setAttribute("data-bound", "true");
   }
 
   // Build the quick-nav month list
