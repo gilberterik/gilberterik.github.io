@@ -4,7 +4,6 @@
 //   start:    "YYYY-MM-DD"  (inclusive)
 //   end:      "YYYY-MM-DD"  (inclusive)
 //   status:   "texas" | "florida" | "uncertain"
-//   label:    optional short note shown in the tooltip (e.g. destination)
 //   location: optional location for ICS events — defaults to TEXAS_CITY when
 //             status is "texas", or FLORIDA_CITY when status is "florida"
 //
@@ -20,12 +19,12 @@ export const FLORIDA_CITY = "Wellington, FL";
 export const APRIL_PERIODS = [
   // Apr 2: 5:15am departure AUS → counts as first Wellington day (not a Austin workday)
   { start: "2026-04-01", end: "2026-04-01", status: "texas" },
-  { start: "2026-04-02", end: "2026-04-07", status: "florida", label: "Wellington", location: "Wellington, FL" },
+  { start: "2026-04-02", end: "2026-04-07", status: "florida", location: "Wellington, FL" },
   // Apr 7: lands WEL→AUS at 1:07am → Apr 8 is first full Austin workday
   { start: "2026-04-08", end: "2026-04-15", status: "texas" },
   // Apr 16: 4:12pm departure AUS → counts as Austin workday; arrives WEL evening → Apr 17 first Wellington workday
   { start: "2026-04-16", end: "2026-04-16", status: "texas" },
-  { start: "2026-04-17", end: "2026-04-27", status: "florida", label: "Wellington", location: "Wellington, FL" },
+  { start: "2026-04-17", end: "2026-04-27", status: "florida", location: "Wellington, FL" },
   // Apr 27: lands WEL→AUS at 9:04pm → Apr 28 is first full Austin workday
   { start: "2026-04-28", end: "2026-04-29", status: "texas" },
   // Apr 30: 4:12pm departure AUS → counts as Austin workday; arrives WEL evening → May 1 first Wellington workday
@@ -33,20 +32,18 @@ export const APRIL_PERIODS = [
 ];
 
 export const PERIODS = [
-  { start: "2026-05-01", end: "2026-05-04", status: "florida", label: "Wellington", location: "Wellington, FL" },
+  { start: "2026-05-01", end: "2026-05-04", status: "florida", location: "Wellington, FL" },
   // May 4: lands WEL→AUS at 11:59pm → May 5 is first full Austin workday
   { start: "2026-05-05", end: "2026-05-19", status: "texas" },
   // May 20: 4:12pm departure AUS → counts as Austin workday; arrives WEL evening → May 21 first Wellington workday
   { start: "2026-05-20", end: "2026-05-20", status: "texas" },
-  { start: "2026-05-21", end: "2026-05-26", status: "florida", label: "Wellington", location: "Wellington, FL" },
+  { start: "2026-05-21", end: "2026-05-26", status: "florida", location: "Wellington, FL" },
   // May 26: lands WEL→AUS at 11:59pm → May 27 is first full Austin workday
-  { start: "2026-05-27", end: "2026-06-02", status: "texas" },
+  { start: "2026-05-27", end: "2026-06-03", status: "texas" },
   // June: texas on Wed/Thu
-  { start: "2026-06-03", end: "2026-06-03", status: "texas" },
-  { start: "2026-06-04", end: "2026-06-07", status: "florida", label: "Wellington", location: "Wellington, FL" },
-  { start: "2026-06-08", end: "2026-06-16", status: "texas" },
-  { start: "2026-06-17", end: "2026-07-01", status: "texas" },
-  { start: "2026-07-02", end: "2026-07-07", status: "florida", label: "Wellington", location: "Wellington, FL" },
+  { start: "2026-06-04", end: "2026-06-09", status: "florida", location: "Wellington, FL" },
+  { start: "2026-06-10", end: "2026-07-01", status: "texas" },
+  { start: "2026-07-02", end: "2026-07-07", status: "florida", location: "Wellington, FL" },
   { start: "2026-07-08", end: "2026-07-16", status: "texas" },
   { start: "2026-07-17", end: "2026-07-31", status: "uncertain" },
 ];
