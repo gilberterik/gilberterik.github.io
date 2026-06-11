@@ -153,8 +153,8 @@ body {
   gap: 2.5rem;
 }
 
-/* ─── Month section ─────────────────────────────────────────────────────── */
-.month {
+/* ─── Unified Calendar container ────────────────────────────────────────── */
+.calendar-unified {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -164,19 +164,32 @@ body {
   margin: 0 auto;
 }
 
-.month__title {
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  margin-bottom: 1rem;
-  color: var(--color-text);
-}
-
-.month__grid {
+.calendar-unified__grid {
   display: grid;
   grid-template-columns: repeat(7, var(--cell-size));
   gap: var(--gap);
   justify-content: start;
+}
+
+/* Break view divider */
+.month-divider {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.month-divider::before,
+.month-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px dashed var(--color-border);
 }
 
 /* ─── Day-of-week header ────────────────────────────────────────────────── */
@@ -302,8 +315,8 @@ body {
 /* ─── Responsive ────────────────────────────────────────────────────────── */
 @media (max-width: 540px) {
   :root { --cell-size: clamp(36px, 12vw, 50px); --gap: 2px; }
-  .month { padding: 0.9rem 0.75rem 1.1rem; }
-  .month__grid { justify-content: center; }
+  .calendar-unified { padding: 0.9rem 0.75rem 1.1rem; }
+  .calendar-unified__grid { justify-content: center; }
 }
 
 @media (max-width: 380px) {
