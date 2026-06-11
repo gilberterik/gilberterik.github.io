@@ -43,9 +43,7 @@ export const PERIODS = [
   { start: "2026-05-27", end: "2026-06-02", status: "texas" },
   // June: texas on Wed/Thu
   { start: "2026-06-03", end: "2026-06-03", status: "texas" },
-  { start: "2026-06-04", end: "2026-06-09", status: "florida" },
-  { start: "2026-06-10", end: "2026-06-25", status: "texas" },
-  { start: "2026-06-19", end: "2026-06-22", status: "texas" },
-  { start: "2026-06-26", end: "2026-07-01", status: "texas" },
-  { start: "2026-07-02", end: "2026-07-07", status: "florida", label: "Wellington" },
+  { start: "2026-06-04", end: "2026-06-07", status: "florida" },
+  { start: "2026-06-08", end: "2026-06-16", status: "texas" },
+  { start: "2026-06-17", end: "2026-07-07", status: "uncertain" },
 ];
