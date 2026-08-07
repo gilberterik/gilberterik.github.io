@@ -35,13 +35,15 @@ function buildDayMap(periods) {
   return map;
 }
 
-function getDisplayRange(periods) {
+function getDisplayRange(periods, displayStart) {
   const starts = periods.map(p => parseDate(p.start));
   const ends   = periods.map(p => parseDate(p.end));
   const minDate = starts.reduce((a, b) => a < b ? a : b);
   const maxDate = ends.reduce((a, b) => a > b ? a : b);
+  const configuredStart = displayStart ? parseDate(displayStart) : minDate;
+  const visibleStart = configuredStart > minDate ? configuredStart : minDate;
   return {
-    startMonth: new Date(minDate.getFullYear(), minDate.getMonth(), 1),
+    startMonth: new Date(visibleStart.getFullYear(), visibleStart.getMonth(), 1),
     endMonth:   new Date(maxDate.getFullYear(), maxDate.getMonth(), 1),
   };
 }
@@ -189,18 +191,18 @@ function renderUnifiedCalendar(startMonth, endMonth, dayMap, todayKey, labels) {
   return wrapper;
 }
 
-export function renderCalendar({ periods, ownerName, texasCity, floridaCity }) {
+export function renderCalendar({ periods, ownerName, texasCity, floridaCity, displayStart }) {
   const container = document.getElementById("calendar");
   if (!container) return;
 
   const sorted  = [...periods].sort((a, b) => a.start.localeCompare(b.start));
   const dayMap  = buildDayMap(sorted);
   const todayKey = toDateKey(new Date());
-  const { startMonth, endMonth } = getDisplayRange(sorted);
+  const { startMonth, endMonth } = getDisplayRange(sorted, displayStart);
   const labels = { texas: texasCity, florida: floridaCity };
 
   // Store data globally for re-rendering
-  window.calendarData = { startMonth, endMonth, dayMap, todayKey, labels };
+  window.calendarData = { startMonth, endMonth, dayMap, todayKey, labels, displayStart };
 
   container.innerHTML = "";
   container.className = "break-view";
@@ -227,7 +229,7 @@ function buildMonthNav(periods) {
   if (!nav) return;
   nav.innerHTML = "";
 
-  const { startMonth, endMonth } = getDisplayRange(periods);
+  const { startMonth, endMonth } = getDisplayRange(periods, window.calendarData?.displayStart);
   let cur = new Date(startMonth);
   while (cur <= endMonth) {
     const y = cur.getFullYear();

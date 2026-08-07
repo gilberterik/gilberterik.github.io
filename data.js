@@ -15,6 +15,8 @@
 export const OWNER_NAME   = "Erik";
 export const TEXAS_CITY   = "Austin, TX";
 export const FLORIDA_CITY = "Wellington, FL";
+// Keep earlier periods in the source data, but begin the visible calendar here.
+export const DISPLAY_START = "2026-07-01";
 
 export const APRIL_PERIODS = [
   // Apr 2: 5:15am departure AUS → counts as first Wellington day (not a Austin workday)

@@ -48,14 +48,15 @@
   </footer>
 
   <script type="module">
-    import { PERIODS, OWNER_NAME, TEXAS_CITY, FLORIDA_CITY } from './data.js';
+    import { PERIODS, OWNER_NAME, TEXAS_CITY, FLORIDA_CITY, DISPLAY_START } from './data.js';
     import { renderCalendar } from './calendar.js';
 
     renderCalendar({ 
       periods: PERIODS, 
       ownerName: OWNER_NAME, 
       texasCity: TEXAS_CITY, 
-      floridaCity: FLORIDA_CITY 
+      floridaCity: FLORIDA_CITY,
+      displayStart: DISPLAY_START
     });
 
     // Show last-modified date of data.js via document.lastModified as a fallback
