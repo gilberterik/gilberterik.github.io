@@ -44,6 +44,7 @@ export const PERIODS = [
   { start: "2026-06-04", end: "2026-06-09", status: "florida", location: "Wellington, FL" },
   { start: "2026-06-10", end: "2026-07-01", status: "texas" },
   { start: "2026-07-02", end: "2026-07-07", status: "florida", location: "Wellington, FL" },
-  { start: "2026-07-08", end: "2026-07-16", status: "texas" },
-  { start: "2026-07-17", end: "2026-07-31", status: "uncertain" },
+  { start: "2026-07-08", end: "2026-07-29", status: "texas" },
+  { start: "2026-07-28", end: "2026-08-01", status: "florida", location: "Wellington, FL" },
+  { start: "2026-08-02", end: "2026-10-31", status: "texas" },
 ];
