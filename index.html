@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0c131c">
-  <meta name="description" content="Gilbert Erik Garcia — Solutions Architect at ERCOT. Contact and badge profile for GitHub Universe.">
+  <meta name="description" content="Gilbert Erik Garcia — Solution Architect at ERCOT. Contact and badge profile for GitHub Universe.">
   <link rel="canonical" href="https://gilberterik.github.io/">
   <link rel="icon" href="assets/texas-outline.svg" type="image/svg+xml">
-  <title>Gilbert Erik Garcia | Solutions Architect · ERCOT</title>
+  <title>Gilbert Erik Garcia | Solution Architect · ERCOT</title>
   
   <!-- ERCOT Corporate Typography: Montserrat (Headers) & Roboto (Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,7 +50,7 @@
     a { color: inherit; text-decoration: none; }
     button { font-family: inherit; }
     
-    .shell { width: min(1040px, calc(100% - 44px)); margin: 0 auto; }
+    .shell { width: min(1060px, calc(100% - 44px)); margin: 0 auto; }
     
     /* Top Navigation */
     .topbar {
@@ -79,8 +79,8 @@
     }
 
     /* Main Section */
-    main { padding: clamp(40px, 7vh, 70px) 0 40px; }
-    .hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr); align-items: center; gap: clamp(32px, 6vw, 70px); }
+    main { padding: clamp(36px, 6vh, 64px) 0 40px; }
+    .hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(310px, 0.85fr); align-items: center; gap: clamp(32px, 5vw, 68px); }
     
     .eyebrow {
       display: inline-flex; align-items: center; gap: 9px;
@@ -173,56 +173,193 @@
     .badge-note img { width: 20px; height: 20px; opacity: 0.85; }
     .badge-note strong { color: var(--text-muted); font-weight: 700; }
 
-    /* Clean ERCOT-Themed Conference Badge Card */
+    /* ==========================================================================
+       AUTHENTIC GITHUB UNIVERSE BADGE REPLICA
+       ========================================================================== */
     .visual { display: grid; place-items: center; }
-    .badge-card {
-      width: min(100%, 300px);
-      background: linear-gradient(180deg, #16202d 0%, #101722 100%);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px 18px 18px;
-      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.03);
+    .badge-assembly {
+      width: min(100%, 320px);
       position: relative;
-      text-align: center;
+      filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.65));
+    }
+
+    /* Metallic Lanyard Clips */
+    .badge-clips {
+      display: flex; justify-content: space-between; padding: 0 38px;
+      position: relative; z-index: 5; margin-bottom: -10px;
+    }
+    .clip {
+      width: 28px; height: 28px;
+      background: linear-gradient(180deg, #d8dee9 0%, #8892b0 45%, #e5e9f0 55%, #4c566a 100%);
+      border-radius: 4px; border: 1px solid #2e3440;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.7);
+      display: grid; place-items: center; position: relative;
+    }
+    .clip::after {
+      content: ""; width: 14px; height: 14px; border-radius: 50%;
+      border: 2px solid #3b4252;
+    }
+
+    /* Physical Paper Badge Card */
+    .badge-pass {
+      background: #ffffff;
+      color: #1a1e24;
+      border-radius: 16px 16px 0 0;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    /* Purple PCB accent edge visible on right */
+    .badge-pass::before {
+      content: ""; position: absolute; right: 0; top: 0; bottom: 0; width: 11px;
+      background: #49176d;
+      background-image: radial-gradient(#caa242 1px, transparent 1px);
+      background-size: 4px 4px;
+    }
+
+    .badge-pass-inner {
+      padding: 24px 22px 0 20px;
+    }
+
+    .badge-pass-header {
+      display: flex; align-items: center; gap: 7px;
       font-family: var(--font-display);
+      font-weight: 800; font-size: 0.95rem; letter-spacing: -0.02em; color: #1e252b;
+      margin-bottom: 8px;
     }
-    .badge-lanyard-slot {
-      width: 40px; height: 6px; border-radius: 99px;
-      background: #090e15; border: 1px solid var(--border);
-      margin: 0 auto 14px;
+    .badge-gh-icon { width: 18px; height: 18px; fill: #1e252b; }
+    .badge-pass-year { color: var(--ercot-teal); font-weight: 800; }
+
+    .badge-pass-divider {
+      height: 1.5px; background: #68d391; margin-bottom: 16px;
+      width: calc(100% - 4px);
     }
-    .badge-card-header {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border);
+
+    .badge-pass-body {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      padding-bottom: 16px; min-height: 145px;
     }
-    .badge-org-tag {
-      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; color: var(--ercot-teal);
+    .pass-name-block { flex: 1; }
+    .pass-name {
+      font-family: var(--font-display);
+      font-size: 1.95rem; line-height: 1.05; font-weight: 800; color: #1a1e24;
+      letter-spacing: -0.03em; margin-bottom: 10px;
     }
-    .badge-event-label {
-      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase;
+    .pass-handle {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.84rem; color: #3b4252; margin-bottom: 12px; font-weight: 600;
     }
-    .portrait-wrap {
-      width: 136px; height: 136px; margin: 0 auto 16px;
-      border-radius: 12px; overflow: hidden;
-      border: 2px solid var(--border);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
-      background: #000;
+    .pass-role {
+      font-size: 0.88rem; font-weight: 600; color: #2e3440; line-height: 1.3;
     }
-    .portrait-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pass-org {
+      font-size: 0.88rem; font-weight: 700; color: #1a1e24;
+    }
+
+    .pass-qr-block {
+      width: 72px; height: 72px; margin-left: 10px; flex-shrink: 0;
+      background: #fff; padding: 2px; border-radius: 4px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    .pass-qr-block img { width: 100%; height: 100%; display: block; }
+
+    /* Blue "ATTENDEE" Bottom Strip */
+    .badge-attendee-strip {
+      background: #0091da;
+      height: 32px;
+      display: flex; align-items: center;
+      padding: 0 18px;
+      position: relative;
+      margin: 0 -22px 0 -20px;
+    }
+    .attendee-mark {
+      width: 3.5px; height: 16px; background: #d91b80;
+      position: absolute; left: 18px; border-radius: 1px;
+    }
+    .attendee-text {
+      font-family: var(--font-display);
+      font-size: 0.76rem; font-weight: 800; letter-spacing: 0.16em;
+      color: #0c1c2c; margin-left: 12px;
+    }
+
+    /* Lower Electronic Badge Device Attachment */
+    .badge-device {
+      background: rgba(22, 30, 44, 0.82);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.18);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0 0 16px 16px;
+      padding: 14px 28px 14px 14px;
+      position: relative;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 10px 20px rgba(0,0,0,0.5);
+    }
+
+    /* Hardware Screws / Standoffs */
+    .screw {
+      position: absolute; width: 6px; height: 6px; border-radius: 50%;
+      background: #8892b0; border: 1px solid #1a2230;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+    }
+    .screw-tl { top: 7px; left: 7px; }
+    .screw-tr { top: 7px; right: 28px; }
+    .screw-bl { bottom: 7px; left: 7px; }
+    .screw-br { bottom: 7px; right: 28px; }
+
+    /* LCD Screen inside Bezel */
+    .device-screen-bezel {
+      background: #050810;
+      border: 2px solid #1f2a3a;
+      border-radius: 8px;
+      padding: 10px 8px;
+      text-align: center;
+      box-shadow: inset 0 0 12px rgba(0,0,0,0.8);
+    }
+    .screen-header {
+      font-family: var(--font-display);
+      font-size: 0.68rem; font-weight: 800; letter-spacing: 0.08em;
+      color: var(--ercot-teal); text-shadow: 0 0 8px rgba(0, 171, 199, 0.4);
+      margin-bottom: 2px;
+    }
+    .screen-subtitle {
+      font-size: 0.52rem; font-weight: 700; letter-spacing: 0.14em;
+      color: #9ab0c7; margin-bottom: 8px; text-transform: uppercase;
+    }
+    .screen-portrait-wrap {
+      width: 96px; height: 96px; margin: 0 auto 8px;
+      border-radius: 8px; overflow: hidden;
+      border: 2px solid var(--ercot-teal);
+      box-shadow: 0 0 14px rgba(0, 171, 199, 0.35);
+      position: relative;
+    }
+    .screen-portrait-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
     
-    .badge-card-name { font-size: 1.15rem; font-weight: 800; color: var(--text-white); letter-spacing: -0.01em; margin-bottom: 4px; }
-    .badge-card-org { font-size: 0.74rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; }
-    .badge-card-footer {
-      margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
-      font-size: 0.66rem; color: var(--text-dark-muted); font-weight: 600; letter-spacing: 0.06em;
+    .screen-url {
+      font-size: 0.65rem; font-weight: 750; color: #ffffff;
+      letter-spacing: 0.04em; margin-bottom: 2px;
     }
-    .badge-status-dot { display: inline-flex; align-items: center; gap: 5px; color: var(--ercot-teal); }
-    .badge-status-dot::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--ercot-teal); }
+    .screen-control-hint {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.52rem; font-weight: 700; color: var(--ercot-teal);
+      letter-spacing: 0.1em;
+    }
+
+    /* Hardware Buttons on Right Side of Casing */
+    .device-buttons {
+      position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .hw-btn {
+      width: 14px; height: 18px; background: #0c121a;
+      border: 1px solid #334155; border-radius: 3px;
+      display: grid; place-items: center; color: #64748b; font-size: 0.45rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
 
     /* Footer */
     footer {
-      margin-top: clamp(40px, 6vh, 70px); padding: 20px 0;
+      margin-top: clamp(36px, 5vh, 60px); padding: 20px 0;
       display: flex; justify-content: space-between; align-items: center; gap: 16px;
       border-top: 1px solid var(--border);
       color: var(--text-dark-muted); font-size: 0.72rem; font-family: var(--font-display);
@@ -234,7 +371,7 @@
       .topbar { min-height: 64px; }
       .hero { grid-template-columns: 1fr; gap: 28px; }
       .visual { grid-row: 1; }
-      .badge-card { width: min(84vw, 290px); }
+      .badge-assembly { width: min(88vw, 320px); }
       .intro { max-width: 100%; }
       main { padding-top: 20px; }
       .btn-row { grid-template-columns: 1fr; }
@@ -266,7 +403,7 @@
           <h1 id="name">Gilbert <span>Erik</span><br>Garcia</h1>
           
           <div class="role-badge">
-            <span>Solutions Architect</span>
+            <span>Solution Architect</span>
             <span class="sep">/</span>
             <strong>ERCOT</strong>
           </div>
@@ -314,22 +451,69 @@
           </div>
         </div>
 
-        <!-- Clean Conference Badge Card -->
-        <div class="visual" role="img" aria-label="Conference badge card with portrait of Gilbert Erik Garcia">
-          <div class="badge-card">
-            <div class="badge-lanyard-slot" aria-hidden="true"></div>
-            <div class="badge-card-header">
-              <span class="badge-org-tag">ERCOT</span>
-              <span class="badge-event-label">Universe '26</span>
+        <!-- ==========================================================================
+             AUTHENTIC GITHUB UNIVERSE BADGE REPLICA
+             ========================================================================== -->
+        <div class="visual" role="img" aria-label="Replica of GitHub Universe conference pass and electronic badge">
+          <div class="badge-assembly">
+            <!-- Top Bulldog Clips -->
+            <div class="badge-clips" aria-hidden="true">
+              <div class="clip clip-left"></div>
+              <div class="clip clip-right"></div>
             </div>
-            <div class="portrait-wrap">
-              <img src="assets/gilberterik_profile_160.jpg" alt="Gilbert Erik Garcia">
+
+            <!-- Upper Physical Paper Pass -->
+            <div class="badge-pass">
+              <div class="badge-pass-inner">
+                <div class="badge-pass-header">
+                  <svg class="badge-gh-icon" viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                  </svg>
+                  <span>UNIVERSE<span class="badge-pass-year">'26</span></span>
+                </div>
+                <div class="badge-pass-divider"></div>
+
+                <div class="badge-pass-body">
+                  <div class="pass-name-block">
+                    <div class="pass-name">Erik<br>Garcia</div>
+                    <div class="pass-handle">@gilberterik</div>
+                    <div class="pass-role">Solution Architect</div>
+                    <div class="pass-org">ERCOT</div>
+                  </div>
+                  <div class="pass-qr-block">
+                    <img src="assets/badge-qr.svg" alt="Badge QR Code">
+                  </div>
+                </div>
+
+                <div class="badge-attendee-strip">
+                  <span class="attendee-mark"></span>
+                  <span class="attendee-text">ATTENDEE</span>
+                </div>
+              </div>
             </div>
-            <div class="badge-card-name">Erik Garcia</div>
-            <div class="badge-card-org">Solutions Architect · ERCOT</div>
-            <div class="badge-card-footer">
-              <span class="badge-status-dot">Verified</span>
-              <span>Austin, TX</span>
+
+            <!-- Lower Electronic Badge Device -->
+            <div class="badge-device">
+              <span class="screw screw-tl"></span>
+              <span class="screw screw-tr"></span>
+              <span class="screw screw-bl"></span>
+              <span class="screw screw-br"></span>
+
+              <div class="device-screen-bezel">
+                <div class="screen-header">GILBERT ERIK GARCIA</div>
+                <div class="screen-subtitle">HELLO, I'M ERIK</div>
+                <div class="screen-portrait-wrap">
+                  <img src="assets/gilberterik_profile_160.jpg" alt="Gilbert Erik Garcia">
+                </div>
+                <div class="screen-url">gilberterik.github.io</div>
+                <div class="screen-control-hint">SELECT: HOLD QR</div>
+              </div>
+
+              <!-- Hardware buttons on the right edge -->
+              <div class="device-buttons" aria-hidden="true">
+                <div class="hw-btn">▲</div>
+                <div class="hw-btn">▼</div>
+              </div>
             </div>
           </div>
         </div>
