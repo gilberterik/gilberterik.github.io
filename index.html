@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#040713">
+  <meta name="description" content="Gilbert Erik Garcia — Solutions Architect at ERCOT. Contact and badge profile for GitHub Universe.">
+  <link rel="canonical" href="https://gilberterik.github.io/">
+  <link rel="icon" href="assets/texas-outline.svg" type="image/svg+xml">
+  <title>Gilbert Erik Garcia | Solutions Architect · GitHub Universe</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --night: #040713;
+      --surface: rgba(12, 22, 40, 0.75);
+      --white: #f6faff;
+      --muted: #91a5be;
+      --cyan: #26ebff;
+      --violet: #b448ff;
+      --pink: #ff46b0;
+      --line: rgba(160, 200, 255, .17);
+    }
+    * { box-sizing: border-box; }
+    html { min-height: 100%; background: var(--night); }
+    body {
+      min-height: 100vh; margin: 0; overflow-x: hidden; color: var(--white);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(ellipse at 78% 26%, rgba(62, 39, 137, .28), transparent 34rem),
+        radial-gradient(ellipse at 20% 76%, rgba(0, 156, 190, .16), transparent 36rem),
+        var(--night);
+    }
+    body::before {
+      position: fixed; inset: 0; z-index: -1; pointer-events: none; content: "";
+      opacity: .22; background-image: radial-gradient(rgba(185, 215, 255, .8) .7px, transparent .8px);
+      background-size: 47px 47px; mask-image: linear-gradient(120deg, transparent 8%, #000 55%, transparent 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; }
+    .shell { width: min(1080px, calc(100% - 48px)); margin: 0 auto; }
+    .topbar {
+      min-height: 82px; display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; border-bottom: 1px solid var(--line);
+    }
+    .brand { display: inline-flex; align-items: center; gap: 12px; }
+    .brand img { width: 30px; height: 30px; filter: drop-shadow(0 0 11px rgba(38, 235, 255, .45)); }
+    .brand span { font-size: .8rem; font-weight: 750; letter-spacing: .14em; }
+    .signal {
+      display: inline-flex; align-items: center; gap: 9px; color: var(--muted);
+      font-size: .68rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+    }
+    .signal::before {
+      width: 7px; height: 7px; border-radius: 50%; content: "";
+      background: var(--cyan); box-shadow: 0 0 12px var(--cyan);
+    }
+    main { padding: clamp(40px, 8vh, 80px) 0 44px; }
+    .hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr); align-items: center; gap: clamp(28px, 6vw, 80px); }
+    
+    .eyebrow { display: flex; align-items: center; gap: 10px; color: var(--cyan); font-size: .72rem; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; }
+    .eyebrow::before { width: 25px; height: 1px; content: ""; background: var(--cyan); box-shadow: 0 0 9px var(--cyan); }
+    
+    h1 { max-width: 700px; margin: 18px 0 10px; font-size: clamp(2.6rem, 6.5vw, 5.2rem); line-height: .98; letter-spacing: -.065em; }
+    h1 span { color: var(--cyan); text-shadow: 0 0 34px rgba(38, 235, 255, .25); }
+    
+    .role-badge {
+      display: inline-flex; align-items: center; gap: 8px; margin-bottom: 16px;
+      padding: 6px 14px; border-radius: 999px;
+      background: rgba(38, 235, 255, 0.08); border: 1px solid rgba(38, 235, 255, 0.25);
+      color: #d8eaff; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em;
+    }
+    .role-badge strong { color: var(--cyan); font-weight: 800; }
+    
+    .intro { max-width: 520px; margin: 0 0 24px; color: #c1cde0; font-size: clamp(0.98rem, 1.6vw, 1.15rem); line-height: 1.6; }
+
+    /* Actions container */
+    .actions-cluster { display: flex; flex-direction: column; gap: 12px; max-width: 480px; }
+
+    /* Primary CTA: Save Contact */
+    .btn-vcard {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 16px 22px; border-radius: 14px;
+      background: linear-gradient(130deg, rgba(38, 235, 255, 0.2), rgba(180, 72, 255, 0.16) 70%, rgba(18, 33, 59, 0.8));
+      border: 1.5px solid var(--cyan);
+      box-shadow: 0 0 30px rgba(38, 235, 255, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      cursor: pointer; transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+    }
+    .btn-vcard:hover, .btn-vcard:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 0 45px rgba(38, 235, 255, 0.35);
+      background: linear-gradient(130deg, rgba(38, 235, 255, 0.3), rgba(180, 72, 255, 0.24) 70%, rgba(24, 42, 75, 0.9));
+      outline: none;
+    }
+    .btn-vcard-body { display: flex; align-items: center; gap: 14px; }
+    .btn-vcard-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: rgba(38, 235, 255, 0.15);
+      border: 1px solid rgba(38, 235, 255, 0.4);
+      display: grid; place-items: center; color: var(--cyan); flex-shrink: 0;
+    }
+    .btn-vcard-icon svg { width: 22px; height: 22px; }
+    .btn-vcard-text strong { display: block; font-size: 1.05rem; font-weight: 750; letter-spacing: 0.01em; color: #fff; }
+    .btn-vcard-text small { display: block; margin-top: 2px; font-size: 0.72rem; color: #a4bedb; font-weight: 500; }
+    .btn-vcard-arrow { color: var(--cyan); font-size: 1.35rem; font-weight: 700; }
+
+    /* Secondary action bar */
+    .btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .btn-secondary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      padding: 12px 14px; border-radius: 11px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: #e2eeff; font-size: 0.82rem; font-weight: 650; letter-spacing: 0.02em;
+      cursor: pointer; transition: all 0.18s ease;
+    }
+    .btn-secondary:hover, .btn-secondary:focus-visible {
+      border-color: rgba(38, 235, 255, 0.6);
+      color: var(--cyan);
+      box-shadow: 0 0 20px rgba(38, 235, 255, 0.12);
+      transform: translateY(-1px);
+      outline: none;
+    }
+    .btn-secondary svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* Social pill links */
+    .social-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 8px 14px; border-radius: 999px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(160, 200, 255, 0.15);
+      color: #9eb5d1; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.03em;
+      transition: all 0.15s ease;
+    }
+    .pill:hover, .pill:focus-visible {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(38, 235, 255, 0.5);
+      color: #fff;
+      outline: none;
+    }
+    .pill svg { width: 14px; height: 14px; fill: currentColor; }
+
+    .badge-note { display: flex; align-items: center; gap: 12px; margin-top: 24px; color: var(--muted); font-size: .68rem; line-height: 1.55; letter-spacing: .1em; }
+    .badge-note img { width: 24px; height: 24px; opacity: .9; }
+    .badge-note strong { color: #dce9fa; font-size: .68rem; }
+
+    /* Visual avatar component */
+    .visual { position: relative; width: min(100%, 390px); aspect-ratio: 1; margin: 0 auto; display: grid; place-items: center; isolation: isolate; }
+    .visual::before { position: absolute; inset: 18%; z-index: -1; content: ""; border-radius: 50%; background: rgba(19, 89, 132, .25); filter: blur(45px); }
+    .orbit { position: absolute; border: 1px solid rgba(38, 235, 255, .28); border-radius: 50%; animation: orbit 24s linear infinite; }
+    .orbit::after { position: absolute; top: 50%; right: -4px; width: 8px; height: 8px; content: ""; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 9px 2px rgba(38, 235, 255, .8); }
+    .orbit.one { inset: 8%; }
+    .orbit.two { inset: 1%; border-color: rgba(180, 72, 255, .3); animation-duration: 34s; animation-direction: reverse; transform: rotate(34deg); }
+    .orbit.two::after { background: var(--violet); box-shadow: 0 0 10px 2px rgba(180, 72, 255, .8); }
+    .orbit.three { inset: 17%; border-color: rgba(255, 70, 176, .2); animation-duration: 19s; }
+    .orbit.three::after { width: 5px; height: 5px; background: var(--pink); box-shadow: 0 0 8px 2px rgba(255, 70, 176, .7); }
+    .portrait {
+      width: 54%; aspect-ratio: 1; margin: 0; overflow: hidden; position: relative;
+      border: 4px solid rgba(246, 250, 255, .94); border-radius: 22px;
+      background: #f6faff; box-shadow: 0 0 0 1px rgba(38,235,255,.55), 0 0 45px rgba(38,235,255,.24), 0 20px 65px rgba(0,0,0,.5);
+    }
+    .portrait img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .portrait-caption { position: absolute; left: 50%; bottom: 2%; transform: translateX(-50%); color: rgba(198, 220, 244, .72); font-size: .6rem; font-weight: 750; letter-spacing: .22em; white-space: nowrap; }
+
+    footer { margin-top: clamp(40px, 7vh, 80px); padding: 18px 0; display: flex; justify-content: space-between; gap: 18px; border-top: 1px solid var(--line); color: #7e91ac; font-size: .65rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+    footer span:last-child { color: var(--cyan); }
+    
+    @keyframes orbit { to { rotate: 1turn; } }
+    @media (max-width: 760px) {
+      .shell { width: min(600px, calc(100% - 36px)); }
+      .topbar { min-height: 68px; }
+      .hero { grid-template-columns: 1fr; gap: 24px; }
+      .visual { width: min(84vw, 320px); grid-row: 1; }
+      .intro { max-width: 560px; }
+      main { padding-top: 24px; }
+      .btn-row { grid-template-columns: 1fr; }
+      footer { flex-wrap: wrap; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Gilbert Erik Garcia home">
+        <img src="assets/texas-outline.svg" alt="">
+        <span>GILBERT ERIK GARCIA</span>
+      </a>
+      <div class="signal">Badge signal received</div>
+    </header>
+    <main id="main">
+      <section class="hero" aria-labelledby="name">
+        <div class="copy">
+          <div class="eyebrow">GitHub Universe · 2026</div>
+          <h1 id="name">Gilbert <span>Erik</span><br>Garcia</h1>
+          
+          <div class="role-badge">
+            <span>Solutions Architect</span>
+            <span>·</span>
+            <strong>ERCOT</strong>
+          </div>
+
+          <p class="intro">Great meeting you at GitHub Universe! Tap below to save my contact info or reach out directly.</p>
+
+          <div class="actions-cluster">
+            <!-- Primary Action: Native Contact Download -->
+            <a class="btn-vcard" href="assets/erik-garcia.vcf" download="Gilbert-Erik-Garcia.vcf" aria-label="Add Gilbert Erik Garcia to contacts">
+              <div class="btn-vcard-body">
+                <div class="btn-vcard-icon" aria-hidden="true">
+                  <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.765z" />
+                  </svg>
+                </div>
+                <div class="btn-vcard-text">
+                  <strong>Save to Contacts</strong>
+                  <small>Add to iPhone / Android address book</small>
+                </div>
+              </div>
+              <div class="btn-vcard-arrow" aria-hidden="true">↓</div>
+            </a>
+
+            <!-- Secondary Actions: Email & Copy -->
+            <div class="btn-row">
+              <a class="btn-secondary" href="mailto:erik.garcia@ercot.com?subject=GitHub%20Universe%202026%20%E2%80%94%20Great%20meeting%20you!&body=Hi%20Erik,%0A%0AGreat%20chatting%20at%20GitHub%20Universe.%0A%0A" aria-label="Send email to erik.garcia@ercot.com">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0017.25 4.5h-10.5A2.25 2.25 0 004.5 6.75m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                </svg>
+                <span>Email Erik</span>
+              </a>
+
+              <button class="btn-secondary" id="copy-btn" type="button" onclick="copyEmail()" aria-label="Copy email address to clipboard">
+                <svg id="copy-icon" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
+                </svg>
+                <span id="copy-label">Copy Email</span>
+              </button>
+            </div>
+
+            <!-- Social pill links -->
+            <div class="social-pills">
+              <a class="pill" href="https://github.com/gilberterik" target="_blank" rel="noopener" aria-label="Gilbert Erik Garcia on GitHub">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                <span>github.com/gilberterik</span>
+              </a>
+
+              <a class="pill" href="https://www.linkedin.com/in/gilberterik/" target="_blank" rel="noopener" aria-label="Gilbert Erik Garcia on LinkedIn">
+                <svg viewBox="0 0 24 24">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+                <span>LinkedIn</span>
+              </a>
+
+              <a class="pill" href="https://gilberterik.github.io/" aria-label="Gilbert Erik Garcia personal site">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+                </svg>
+                <span>gilberterik.github.io</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="badge-note">
+            <img src="assets/texas-outline.svg" alt="">
+            <span><strong>GITHUB UNIVERSE BADGE</strong><br>SCAN SUCCESSFUL · PROFILE FOUND</span>
+          </div>
+        </div>
+
+        <div class="visual" role="img" aria-label="Portrait of Gilbert Erik Garcia surrounded by animated neon orbits">
+          <span class="orbit one"></span>
+          <span class="orbit two"></span>
+          <span class="orbit three"></span>
+          <figure class="portrait">
+            <img src="assets/gilberterik_profile_160.jpg" alt="Gilbert Erik Garcia">
+          </figure>
+          <div class="portrait-caption">HELLO, I’M ERIK</div>
+        </div>
+      </section>
+
+      <footer>
+        <span>Personal badge profile</span>
+        <span>erik.garcia@ercot.com</span>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    function copyEmail() {
+      const email = 'erik.garcia@ercot.com';
+      const label = document.getElementById('copy-label');
+      const btn = document.getElementById('copy-btn');
+      
+      const onSuccess = () => {
+        label.textContent = 'Copied to Clipboard!';
+        btn.style.borderColor = 'var(--cyan)';
+        btn.style.color = 'var(--cyan)';
+        btn.style.boxShadow = '0 0 22px rgba(38, 235, 255, 0.3)';
+        setTimeout(() => {
+          label.textContent = 'Copy Email';
+          btn.style.borderColor = '';
+          btn.style.color = '';
+          btn.style.boxShadow = '';
+        }, 2200);
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(onSuccess).catch(() => fallbackCopy(email, onSuccess));
+      } else {
+        fallbackCopy(email, onSuccess);
+      }
+    }
+
+    function fallbackCopy(text, cb) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try {
+        document.execCommand('copy');
+        cb();
+      } catch (err) {
+        console.error('Copy failed', err);
+      }
+      document.body.removeChild(ta);
+    }
+  </script>
+</body>
+</html>
