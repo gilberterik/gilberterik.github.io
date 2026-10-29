@@ -3,34 +3,48 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b0f17">
+  <meta name="theme-color" content="#0c131c">
   <meta name="description" content="Gilbert Erik Garcia — Solutions Architect at ERCOT. Contact and badge profile for GitHub Universe.">
   <link rel="canonical" href="https://gilberterik.github.io/">
   <link rel="icon" href="assets/texas-outline.svg" type="image/svg+xml">
-  <title>Gilbert Erik Garcia | Solutions Architect · GitHub Universe</title>
+  <title>Gilbert Erik Garcia | Solutions Architect · ERCOT</title>
+  
+  <!-- ERCOT Corporate Typography: Montserrat (Headers) & Roboto (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  
   <style>
     :root {
       color-scheme: dark;
-      --bg: #0b0f17;
-      --bg-card: #111724;
-      --surface: rgba(255, 255, 255, 0.035);
-      --surface-hover: rgba(255, 255, 255, 0.065);
-      --white: #f1f5f9;
-      --muted: #94a3b8;
-      --muted-dark: #64748b;
-      --cyan: #26ebff;
-      --cyan-dim: rgba(38, 235, 255, 0.12);
-      --border: rgba(255, 255, 255, 0.09);
-      --border-accent: rgba(38, 235, 255, 0.4);
+      /* ERCOT Official Brand Palette (ercot.com) */
+      --ercot-teal: #00abc7;
+      --ercot-teal-hover: #00c2e0;
+      --ercot-navy: #003865;
+      --ercot-navy-subtle: rgba(0, 56, 101, 0.4);
+      --ercot-charcoal: #171a1c;
+      --ercot-slate: #5d6770;
+      --bg: #0c131c;
+      --card-bg: #141c27;
+      --card-hover: #192331;
+      --border: #223040;
+      --border-accent: rgba(0, 171, 199, 0.45);
+      --text-white: #ffffff;
+      --text-primary: #f0f4f8;
+      --text-muted: #8c9dae;
+      --text-dark-muted: #5d6f82;
+      --font-display: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-body: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
+    
     * { box-sizing: border-box; }
     html { min-height: 100%; background: var(--bg); }
     body {
-      min-height: 100vh; margin: 0; overflow-x: hidden; color: var(--white);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh; margin: 0; overflow-x: hidden; color: var(--text-primary);
+      font-family: var(--font-body);
       background:
-        radial-gradient(ellipse at 50% 0%, rgba(38, 235, 255, 0.05), transparent 60%),
-        radial-gradient(ellipse at 90% 40%, rgba(30, 41, 59, 0.4), transparent 50%),
+        radial-gradient(ellipse at 70% 0%, var(--ercot-navy-subtle), transparent 60%),
+        radial-gradient(ellipse at 15% 90%, rgba(0, 171, 199, 0.05), transparent 45%),
         var(--bg);
     }
     a { color: inherit; text-decoration: none; }
@@ -38,167 +52,187 @@
     
     .shell { width: min(1040px, calc(100% - 44px)); margin: 0 auto; }
     
-    /* Top Header */
+    /* Top Navigation */
     .topbar {
-      min-height: 76px; display: flex; align-items: center; justify-content: space-between;
+      min-height: 72px; display: flex; align-items: center; justify-content: space-between;
       gap: 16px; border-bottom: 1px solid var(--border);
     }
-    .brand { display: inline-flex; align-items: center; gap: 11px; }
-    .brand img { width: 26px; height: 26px; filter: drop-shadow(0 0 8px rgba(38, 235, 255, 0.35)); }
-    .brand span { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; color: var(--white); }
+    .brand { display: inline-flex; align-items: center; gap: 12px; }
+    .brand img { width: 26px; height: 26px; }
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; color: var(--text-white);
+    }
+    .brand-tag {
+      font-size: 0.68rem; font-weight: 600; color: var(--ercot-teal); letter-spacing: 0.06em;
+      border-left: 1px solid var(--border); padding-left: 10px; margin-left: -2px;
+    }
     
     .signal {
-      display: inline-flex; align-items: center; gap: 8px; color: var(--muted);
-      font-size: 0.7rem; font-weight: 650; letter-spacing: 0.1em; text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted);
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      font-family: var(--font-display);
     }
-    .signal::before {
-      width: 7px; height: 7px; border-radius: 50%; content: "";
-      background: var(--cyan); box-shadow: 0 0 10px var(--cyan);
+    .signal-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--ercot-teal); box-shadow: 0 0 8px var(--ercot-teal);
     }
 
     /* Main Section */
-    main { padding: clamp(40px, 7vh, 75px) 0 40px; }
-    .hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr); align-items: center; gap: clamp(32px, 6vw, 72px); }
+    main { padding: clamp(40px, 7vh, 70px) 0 40px; }
+    .hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr); align-items: center; gap: clamp(32px, 6vw, 70px); }
     
     .eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      color: var(--cyan); font-size: 0.72rem; font-weight: 750; letter-spacing: 0.18em; text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 9px;
+      font-family: var(--font-display);
+      color: var(--ercot-teal); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
     }
-    .eyebrow::before { width: 18px; height: 1.5px; content: ""; background: var(--cyan); }
+    .eyebrow::before { width: 18px; height: 2px; content: ""; background: var(--ercot-teal); }
     
     h1 {
-      max-width: 650px; margin: 16px 0 12px;
-      font-size: clamp(2.4rem, 6vw, 4.6rem); line-height: 1.02; letter-spacing: -0.045em; font-weight: 850;
-      color: #fff;
+      font-family: var(--font-display);
+      max-width: 650px; margin: 16px 0 14px;
+      font-size: clamp(2.4rem, 5.8vw, 4.4rem); line-height: 1.04; letter-spacing: -0.035em; font-weight: 800;
+      color: var(--text-white);
     }
-    h1 span { color: var(--cyan); }
+    h1 span { color: var(--ercot-teal); font-weight: 700; }
     
     .role-badge {
-      display: inline-flex; align-items: center; gap: 8px; margin-bottom: 18px;
-      padding: 6px 13px; border-radius: 8px;
-      background: var(--surface); border: 1px solid var(--border);
-      color: var(--muted); font-size: 0.83rem; font-weight: 600; letter-spacing: 0.02em;
+      display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px;
+      padding: 6px 14px; border-radius: 6px;
+      background: var(--card-bg); border: 1px solid var(--border);
+      color: var(--text-muted); font-size: 0.85rem; font-weight: 500;
+      font-family: var(--font-display);
     }
-    .role-badge strong { color: var(--white); font-weight: 700; }
-    .role-badge .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--cyan); }
+    .role-badge strong { color: var(--ercot-teal); font-weight: 700; }
+    .role-badge .sep { color: var(--text-dark-muted); }
     
     .intro {
-      max-width: 490px; margin: 0 0 26px;
-      color: var(--muted); font-size: clamp(0.95rem, 1.5vw, 1.1rem); line-height: 1.65;
+      max-width: 500px; margin: 0 0 28px;
+      color: var(--text-muted); font-size: clamp(0.96rem, 1.5vw, 1.08rem); line-height: 1.65;
     }
 
-    /* Actions Cluster */
-    .actions-cluster { display: flex; flex-direction: column; gap: 11px; max-width: 440px; }
+    /* Action Controls */
+    .actions-cluster { display: flex; flex-direction: column; gap: 12px; max-width: 440px; }
 
-    /* Primary CTA: Save Contact */
+    /* Primary CTA: Solid ERCOT Teal Business Button */
     .btn-vcard {
       display: flex; align-items: center; justify-content: space-between; gap: 14px;
-      padding: 15px 20px; border-radius: 12px;
-      background: var(--bg-card);
-      border: 1.5px solid var(--border-accent);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 25px rgba(38, 235, 255, 0.08);
+      padding: 16px 20px; border-radius: 10px;
+      background: var(--ercot-teal);
+      color: #07141f;
+      box-shadow: 0 4px 16px rgba(0, 171, 199, 0.25), 0 2px 4px rgba(0,0,0,0.2);
       cursor: pointer; transition: all 0.18s cubic-bezier(0.2, 0, 0, 1);
+      font-family: var(--font-display);
     }
     .btn-vcard:hover, .btn-vcard:focus-visible {
+      background: var(--ercot-teal-hover);
       transform: translateY(-2px);
-      border-color: var(--cyan);
-      box-shadow: 0 6px 28px rgba(0, 0, 0, 0.5), 0 0 32px rgba(38, 235, 255, 0.22);
+      box-shadow: 0 6px 22px rgba(0, 171, 199, 0.38);
       outline: none;
     }
-    .btn-vcard-body { display: flex; align-items: center; gap: 13px; }
+    .btn-vcard-body { display: flex; align-items: center; gap: 14px; }
     .btn-vcard-icon {
-      width: 40px; height: 40px; border-radius: 9px;
-      background: var(--cyan-dim);
-      border: 1px solid rgba(38, 235, 255, 0.3);
-      display: grid; place-items: center; color: var(--cyan); flex-shrink: 0;
+      width: 40px; height: 40px; border-radius: 8px;
+      background: rgba(7, 20, 31, 0.14);
+      display: grid; place-items: center; color: #07141f; flex-shrink: 0;
     }
-    .btn-vcard-icon svg { width: 20px; height: 20px; }
-    .btn-vcard-text strong { display: block; font-size: 1rem; font-weight: 750; letter-spacing: 0.01em; color: #fff; }
-    .btn-vcard-text small { display: block; margin-top: 2px; font-size: 0.72rem; color: var(--muted); font-weight: 500; }
-    .btn-vcard-arrow { color: var(--cyan); font-size: 1.25rem; font-weight: 700; }
+    .btn-vcard-icon svg { width: 22px; height: 22px; }
+    .btn-vcard-text strong { display: block; font-size: 1.02rem; font-weight: 700; letter-spacing: 0.01em; color: #07141f; }
+    .btn-vcard-text small { display: block; margin-top: 2px; font-size: 0.72rem; color: #003865; font-weight: 600; }
+    .btn-vcard-arrow { font-size: 1.3rem; font-weight: 700; color: #07141f; }
 
     /* Secondary Action Bar */
-    .btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+    .btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .btn-secondary {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 11px 14px; border-radius: 10px;
-      background: var(--surface);
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      padding: 12px 14px; border-radius: 9px;
+      background: var(--card-bg);
       border: 1px solid var(--border);
-      color: var(--white); font-size: 0.82rem; font-weight: 650; letter-spacing: 0.01em;
+      color: var(--text-primary); font-size: 0.84rem; font-weight: 600; letter-spacing: 0.02em;
       cursor: pointer; transition: all 0.15s ease;
+      font-family: var(--font-display);
     }
     .btn-secondary:hover, .btn-secondary:focus-visible {
-      background: var(--surface-hover);
-      border-color: rgba(255, 255, 255, 0.22);
-      color: var(--cyan);
+      background: var(--card-hover);
+      border-color: var(--border-accent);
+      color: var(--ercot-teal);
       transform: translateY(-1px);
       outline: none;
     }
-    .btn-secondary svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .btn-secondary svg { width: 16px; height: 16px; flex-shrink: 0; }
 
-    /* Badge Metadata Callout */
+    /* Conference Metadata Callout */
     .badge-note {
-      display: inline-flex; align-items: center; gap: 11px; margin-top: 24px;
-      padding: 10px 14px; border-radius: 9px;
-      background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border);
-      color: var(--muted-dark); font-size: 0.68rem; line-height: 1.45; letter-spacing: 0.08em;
+      display: inline-flex; align-items: center; gap: 12px; margin-top: 26px;
+      padding: 10px 14px; border-radius: 8px;
+      background: rgba(20, 28, 39, 0.6); border: 1px solid var(--border);
+      color: var(--text-dark-muted); font-size: 0.7rem; line-height: 1.45; letter-spacing: 0.06em;
+      font-family: var(--font-display);
     }
-    .badge-note img { width: 20px; height: 20px; opacity: 0.8; }
-    .badge-note strong { color: var(--muted); font-size: 0.68rem; }
+    .badge-note img { width: 20px; height: 20px; opacity: 0.85; }
+    .badge-note strong { color: var(--text-muted); font-weight: 700; }
 
-    /* Badge Card Visual Component */
+    /* Clean ERCOT-Themed Conference Badge Card */
     .visual { display: grid; place-items: center; }
     .badge-card {
-      width: min(100%, 310px);
-      background: linear-gradient(180deg, #161f30 0%, #0f1624 100%);
+      width: min(100%, 300px);
+      background: linear-gradient(180deg, #16202d 0%, #101722 100%);
       border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 22px 20px 20px;
-      box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.04);
+      border-radius: 14px;
+      padding: 20px 18px 18px;
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.03);
       position: relative;
       text-align: center;
+      font-family: var(--font-display);
     }
     .badge-lanyard-slot {
-      width: 44px; height: 7px; border-radius: 99px;
-      background: #090d15; border: 1px solid var(--border);
-      margin: 0 auto 16px;
+      width: 40px; height: 6px; border-radius: 99px;
+      background: #090e15; border: 1px solid var(--border);
+      margin: 0 auto 14px;
+    }
+    .badge-card-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border);
+    }
+    .badge-org-tag {
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; color: var(--ercot-teal);
     }
     .badge-event-label {
-      font-size: 0.64rem; font-weight: 800; letter-spacing: 0.18em;
-      color: var(--cyan); text-transform: uppercase; margin-bottom: 16px;
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase;
     }
     .portrait-wrap {
-      width: 140px; height: 140px; margin: 0 auto 16px;
-      border-radius: 16px; overflow: hidden;
-      border: 2px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+      width: 136px; height: 136px; margin: 0 auto 16px;
+      border-radius: 12px; overflow: hidden;
+      border: 2px solid var(--border);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
       background: #000;
     }
     .portrait-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
     
-    .badge-card-name { font-size: 1.15rem; font-weight: 800; color: #fff; letter-spacing: -0.01em; margin-bottom: 4px; }
-    .badge-card-org { font-size: 0.72rem; font-weight: 700; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; }
+    .badge-card-name { font-size: 1.15rem; font-weight: 800; color: var(--text-white); letter-spacing: -0.01em; margin-bottom: 4px; }
+    .badge-card-org { font-size: 0.74rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; }
     .badge-card-footer {
-      margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border);
+      margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border);
       display: flex; align-items: center; justify-content: space-between;
-      font-size: 0.65rem; color: var(--muted-dark); font-weight: 650; letter-spacing: 0.08em;
+      font-size: 0.66rem; color: var(--text-dark-muted); font-weight: 600; letter-spacing: 0.06em;
     }
-    .badge-status-dot { display: inline-flex; align-items: center; gap: 5px; color: var(--cyan); }
-    .badge-status-dot::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); }
+    .badge-status-dot { display: inline-flex; align-items: center; gap: 5px; color: var(--ercot-teal); }
+    .badge-status-dot::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--ercot-teal); }
 
     /* Footer */
     footer {
-      margin-top: clamp(40px, 6vh, 70px); padding: 18px 0;
-      display: flex; justify-content: space-between; gap: 16px;
+      margin-top: clamp(40px, 6vh, 70px); padding: 20px 0;
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
       border-top: 1px solid var(--border);
-      color: var(--muted-dark); font-size: 0.68rem; font-weight: 650; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-dark-muted); font-size: 0.72rem; font-family: var(--font-display);
     }
-    footer span:last-child { color: var(--muted); }
+    footer span:last-child { color: var(--text-muted); font-weight: 500; }
     
     @media (max-width: 760px) {
       .shell { width: min(580px, calc(100% - 32px)); }
       .topbar { min-height: 64px; }
-      .hero { grid-template-columns: 1fr; gap: 24px; }
+      .hero { grid-template-columns: 1fr; gap: 28px; }
       .visual { grid-row: 1; }
       .badge-card { width: min(84vw, 290px); }
       .intro { max-width: 100%; }
@@ -216,37 +250,41 @@
     <header class="topbar">
       <a class="brand" href="/" aria-label="Gilbert Erik Garcia home">
         <img src="assets/texas-outline.svg" alt="Texas silhouette icon">
-        <span>GILBERT ERIK GARCIA</span>
+        <span class="brand-title">GILBERT ERIK GARCIA</span>
+        <span class="brand-tag">ERCOT</span>
       </a>
-      <div class="signal">Badge signal received</div>
+      <div class="signal">
+        <span class="signal-dot"></span>
+        <span>Conference Delegate</span>
+      </div>
     </header>
+    
     <main id="main">
       <section class="hero" aria-labelledby="name">
         <div class="copy">
-          <div class="eyebrow">GitHub Universe · 2026</div>
+          <div class="eyebrow">GitHub Universe 2026 · Austin, TX</div>
           <h1 id="name">Gilbert <span>Erik</span><br>Garcia</h1>
           
           <div class="role-badge">
-            <span class="dot"></span>
             <span>Solutions Architect</span>
-            <span>·</span>
+            <span class="sep">/</span>
             <strong>ERCOT</strong>
           </div>
 
-          <p class="intro">Great meeting you at GitHub Universe! Tap below to save my contact card to your phone or send a note.</p>
+          <p class="intro">Great connecting at GitHub Universe. Save my contact details directly to your phone or reach out via email below.</p>
 
           <div class="actions-cluster">
-            <!-- Primary Action: Native Contact Download -->
+            <!-- Primary CTA: Solid ERCOT Teal Business Button -->
             <a class="btn-vcard" href="assets/erik-garcia.vcf" download="Gilbert-Erik-Garcia.vcf" aria-label="Add Gilbert Erik Garcia to contacts">
               <div class="btn-vcard-body">
                 <div class="btn-vcard-icon" aria-hidden="true">
-                  <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                  <svg fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.765z" />
                   </svg>
                 </div>
                 <div class="btn-vcard-text">
                   <strong>Save to Contacts</strong>
-                  <small>Direct to iPhone / Android address book</small>
+                  <small>Add to iPhone / Android address book</small>
                 </div>
               </div>
               <div class="btn-vcard-arrow" aria-hidden="true">↓</div>
@@ -268,21 +306,22 @@
                 <span id="copy-label">Copy Email</span>
               </button>
             </div>
-
-
           </div>
 
           <div class="badge-note">
             <img src="assets/texas-outline.svg" alt="">
-            <span><strong>GITHUB UNIVERSE BADGE</strong> · SCAN SUCCESSFUL · PROFILE FOUND</span>
+            <span><strong>GITHUB UNIVERSE 2026</strong> · SCAN VERIFIED · PROFILE FOUND</span>
           </div>
         </div>
 
-        <!-- Sleek Physical-style Conference Badge Card -->
-        <div class="visual" role="img" aria-label="Badge card with portrait of Gilbert Erik Garcia">
+        <!-- Clean Conference Badge Card -->
+        <div class="visual" role="img" aria-label="Conference badge card with portrait of Gilbert Erik Garcia">
           <div class="badge-card">
             <div class="badge-lanyard-slot" aria-hidden="true"></div>
-            <div class="badge-event-label">GitHub Universe '26</div>
+            <div class="badge-card-header">
+              <span class="badge-org-tag">ERCOT</span>
+              <span class="badge-event-label">Universe '26</span>
+            </div>
             <div class="portrait-wrap">
               <img src="assets/gilberterik_profile_160.jpg" alt="Gilbert Erik Garcia">
             </div>
@@ -297,7 +336,7 @@
       </section>
 
       <footer>
-        <span>Personal badge profile</span>
+        <span>Electric Reliability Council of Texas (ERCOT)</span>
         <span>erik.garcia@ercot.com</span>
       </footer>
     </main>
@@ -311,9 +350,9 @@
       
       const onSuccess = () => {
         label.textContent = 'Copied to Clipboard!';
-        btn.style.borderColor = 'var(--cyan)';
-        btn.style.color = 'var(--cyan)';
-        btn.style.boxShadow = '0 0 16px rgba(38, 235, 255, 0.25)';
+        btn.style.borderColor = 'var(--ercot-teal)';
+        btn.style.color = 'var(--ercot-teal)';
+        btn.style.boxShadow = '0 0 14px rgba(0, 171, 199, 0.25)';
         setTimeout(() => {
           label.textContent = 'Copy Email';
           btn.style.borderColor = '';
