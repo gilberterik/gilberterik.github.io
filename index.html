@@ -357,6 +357,108 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
     }
 
+    /* Featured Presentation Section */
+    .presentation-feature {
+      margin-top: clamp(48px, 7vh, 76px);
+    }
+    .presentation-banner {
+      background: linear-gradient(135deg, rgba(20, 28, 39, 0.95) 0%, rgba(13, 20, 30, 0.98) 100%);
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--ercot-teal);
+      border-radius: 14px;
+      padding: clamp(24px, 4vw, 36px) clamp(22px, 4vw, 36px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0, 171, 199, 0.12);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+    .presentation-banner:hover {
+      border-color: var(--border-accent);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(0, 171, 199, 0.16);
+    }
+    .presentation-header-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      margin-bottom: 18px; flex-wrap: wrap;
+    }
+    .presentation-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .presentation-pill {
+      background: rgba(0, 171, 199, 0.15); color: var(--ercot-teal);
+      border: 1px solid rgba(0, 171, 199, 0.35); font-size: 0.68rem; font-weight: 800;
+      letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 10px;
+      border-radius: 4px; font-family: var(--font-display);
+    }
+    .presentation-source {
+      color: var(--text-muted); font-size: 0.74rem; font-weight: 600;
+      letter-spacing: 0.06em; font-family: var(--font-display);
+    }
+    .presentation-format-tag {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.68rem; color: #a5b4fc; background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.3); padding: 4px 10px; border-radius: 4px;
+      font-weight: 600; letter-spacing: 0.04em;
+    }
+    .presentation-main-grid {
+      display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+      align-items: center; gap: clamp(24px, 4vw, 44px);
+    }
+    .presentation-title {
+      font-family: var(--font-display); font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+      font-weight: 800; line-height: 1.2; color: var(--text-white);
+      margin: 0 0 12px; letter-spacing: -0.02em;
+    }
+    .presentation-title span { color: var(--ercot-teal); }
+    .presentation-desc {
+      color: var(--text-muted); font-size: clamp(0.88rem, 1.2vw, 0.96rem);
+      line-height: 1.6; margin: 0 0 18px; max-width: 620px;
+    }
+    .presentation-topics {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .topic-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border);
+      color: #cbd5e1; font-size: 0.72rem; font-weight: 500; padding: 4px 10px;
+      border-radius: 6px;
+    }
+    .topic-chip svg { color: var(--ercot-teal); }
+    .presentation-cta-wrap {
+      display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+    }
+    .btn-presentation {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 100%; max-width: 290px; padding: 16px 20px; border-radius: 10px;
+      background: var(--ercot-teal); color: #07141f; text-decoration: none;
+      cursor: pointer; transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+      box-shadow: 0 4px 16px rgba(0, 171, 199, 0.3); font-family: var(--font-display);
+    }
+    .btn-presentation:hover, .btn-presentation:focus-visible {
+      background: var(--ercot-teal-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(0, 171, 199, 0.45);
+      outline: none;
+    }
+    .btn-presentation-inner {
+      display: flex; align-items: center; gap: 14px; width: 100%;
+    }
+    .btn-presentation-icon {
+      width: 38px; height: 38px; border-radius: 8px;
+      background: rgba(7, 20, 31, 0.15); display: grid; place-items: center;
+      flex-shrink: 0; color: #07141f;
+    }
+    .btn-presentation-icon svg { width: 22px; height: 22px; }
+    .btn-presentation-text strong {
+      display: block; font-size: 0.98rem; font-weight: 750; letter-spacing: 0.01em; color: #07141f;
+    }
+    .btn-presentation-text small {
+      display: block; margin-top: 2px; font-size: 0.72rem; color: #003865; font-weight: 600;
+    }
+    .presentation-subtext {
+      color: var(--text-dark-muted); font-size: 0.72rem; font-family: var(--font-display);
+      text-align: right;
+    }
+
     /* Footer */
     footer {
       margin-top: clamp(36px, 5vh, 60px); padding: 20px 0;
@@ -375,6 +477,10 @@
       .intro { max-width: 100%; }
       main { padding-top: 20px; }
       .btn-row { grid-template-columns: 1fr; }
+      .presentation-main-grid { grid-template-columns: 1fr; gap: 20px; }
+      .presentation-cta-wrap { align-items: stretch; width: 100%; }
+      .btn-presentation { max-width: 100%; }
+      .presentation-subtext { text-align: left; }
       footer { flex-wrap: wrap; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -516,6 +622,65 @@
                 <div class="hw-btn">▲</div>
                 <div class="hw-btn">▼</div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Presentation Section -->
+      <section class="presentation-feature" aria-labelledby="presentation-title">
+        <div class="presentation-banner">
+          <div class="presentation-header-row">
+            <div class="presentation-eyebrow">
+              <span class="presentation-pill">KEYNOTE BRIEF</span>
+              <span class="presentation-source">GitHub Universe 2026 Executive Review</span>
+            </div>
+            <div class="presentation-format-tag">Interactive Slide Deck</div>
+          </div>
+
+          <div class="presentation-main-grid">
+            <div class="presentation-info">
+              <h2 id="presentation-title" class="presentation-title">
+                Visual Summary Presentation: <span>The Agentic Era</span>
+              </h2>
+              <p class="presentation-desc">
+                An interactive architectural brief dissecting key announcements from GitHub Universe 2026 — including multi-model Copilot Fusion routing, cross-repository project continuity, sub-second lockless Git re-architecture for 45B actions, and governance guardrails.
+              </p>
+              <div class="presentation-topics">
+                <span class="topic-chip">
+                  <svg viewBox="0 0 16 16" fill="currentColor" width="12" height="12" aria-hidden="true"><path d="M9.504.43a1.5 1.5 0 0 1 1.06 1.06L9.626 5.5H14a1 1 0 0 1 .78 1.625l-7.5 9a1 1 0 0 1-1.784-.906l1.062-4.219H2.5a1 1 0 0 1-.84-1.547l7-9a1 1 0 0 1 .844-.469z"/></svg>
+                  Copilot Fusion
+                </span>
+                <span class="topic-chip">
+                  <svg viewBox="0 0 16 16" fill="currentColor" width="12" height="12" aria-hidden="true"><path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h11A1.5 1.5 0 0 1 15 2.5v11a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 13.5v-11zM2.5 2a.5.5 0 0 0-.5.5v11a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-11a.5.5 0 0 0-.5-.5h-11z"/></svg>
+                  Projects &amp; Continuity
+                </span>
+                <span class="topic-chip">
+                  <svg viewBox="0 0 16 16" fill="currentColor" width="12" height="12" aria-hidden="true"><path fill-rule="evenodd" d="M11.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5zm-2.25.75a2.25 2.25 0 1 1 3 2.122V6A2.5 2.5 0 0 1 10 8.5H6a1 1 0 0 0-1 1v1.128a2.251 2.251 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.5 0v1.836A2.492 2.492 0 0 1 6 7h4a1 1 0 0 0 1-1v-.628A2.25 2.25 0 0 1 9.5 3.25zM4.25 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5zM3.5 3.25a.75.75 0 1 1 1.5 0 .75.75 0 0 1-1.5 0z"/></svg>
+                  Rebuilding Git
+                </span>
+                <span class="topic-chip">
+                  <svg viewBox="0 0 16 16" fill="currentColor" width="12" height="12" aria-hidden="true"><path fill-rule="evenodd" d="M7.467.133a1.75 1.75 0 0 1 1.066 0l5.25 1.68A1.75 1.75 0 0 1 15 3.48V7c0 1.566-.32 3.182-1.303 4.682-.983 1.498-2.585 2.813-5.032 3.755a1.7 1.7 0 0 1-1.33 0c-2.447-.942-4.049-2.257-5.032-3.755C1.32 10.182 1 8.566 1 7V3.48a1.75 1.75 0 0 1 1.217-1.667l5.25-1.68z"/></svg>
+                  Quality &amp; Governance
+                </span>
+              </div>
+            </div>
+
+            <div class="presentation-cta-wrap">
+              <a class="btn-presentation" href="https://gilberterik.github.io/github-universe-2026-review/presentations/03-visual-summary/#/" target="_blank" rel="noopener noreferrer" aria-label="Launch GitHub Universe 2026 Visual Summary Presentation (opens in new tab)">
+                <div class="btn-presentation-inner">
+                  <span class="btn-presentation-icon" aria-hidden="true">
+                    <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25l3-3m0 0l3 3m-3-3v7.5" />
+                    </svg>
+                  </span>
+                  <div class="btn-presentation-text">
+                    <strong>Launch Visual Summary</strong>
+                    <small>Full Presentation Deck ↗</small>
+                  </div>
+                </div>
+              </a>
+              <span class="presentation-subtext">Part 3: Executive Visual Summary</span>
             </div>
           </div>
         </div>
